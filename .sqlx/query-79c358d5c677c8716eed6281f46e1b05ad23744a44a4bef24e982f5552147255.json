@@ -1,0 +1,65 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT id, name, description, position, status as \"status!: String\", updated_at\n        FROM services\n        WHERE workspace_id = $1\n        ORDER BY position ASC, created_at ASC\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "description",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "position",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "status!: String",
+        "type_info": {
+          "Custom": {
+            "name": "service_status",
+            "kind": {
+              "Enum": [
+                "operational",
+                "degraded",
+                "partial_outage",
+                "major_outage",
+                "maintenance"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "79c358d5c677c8716eed6281f46e1b05ad23744a44a4bef24e982f5552147255"
+}

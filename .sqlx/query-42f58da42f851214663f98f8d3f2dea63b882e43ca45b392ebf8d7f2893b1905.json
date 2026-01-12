@@ -1,0 +1,27 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO incidents (workspace_id, status_page_id, title, status, impact, started_at)\n        VALUES ($1, $2, $3, ($4::text)::incident_status, ($5::text)::incident_impact, $6)\n        RETURNING id\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid",
+        "Text",
+        "Text",
+        "Text",
+        "Timestamptz"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "42f58da42f851214663f98f8d3f2dea63b882e43ca45b392ebf8d7f2893b1905"
+}

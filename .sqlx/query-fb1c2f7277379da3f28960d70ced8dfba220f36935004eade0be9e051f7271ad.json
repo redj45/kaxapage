@@ -1,0 +1,69 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO services (workspace_id, name, description, position, status)\n        VALUES ($1, $2, $3, $4, ($5::text)::service_status)\n        RETURNING id, name, description, position, status as \"status!: String\", updated_at\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "description",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "position",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "status!: String",
+        "type_info": {
+          "Custom": {
+            "name": "service_status",
+            "kind": {
+              "Enum": [
+                "operational",
+                "degraded",
+                "partial_outage",
+                "major_outage",
+                "maintenance"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Text",
+        "Text",
+        "Int4",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "fb1c2f7277379da3f28960d70ced8dfba220f36935004eade0be9e051f7271ad"
+}

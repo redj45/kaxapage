@@ -1,0 +1,5 @@
+# CODEOWNERS
+# These owners will be automatically requested for review on every pull request.
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+* @kaxapage

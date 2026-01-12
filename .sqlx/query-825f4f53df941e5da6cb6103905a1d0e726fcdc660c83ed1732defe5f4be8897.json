@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE incidents SET status = ($1::text)::incident_status WHERE id = $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "825f4f53df941e5da6cb6103905a1d0e726fcdc660c83ed1732defe5f4be8897"
+}

@@ -1,0 +1,16 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE incidents\n        SET status = 'resolved',\n            resolved_at = $1\n        WHERE id = $2 AND workspace_id = $3\n        ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Timestamptz",
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "f4626692d639e94a93e0357b949e5b3b968ce58093aa0c0bf935fabdb32094ea"
+}

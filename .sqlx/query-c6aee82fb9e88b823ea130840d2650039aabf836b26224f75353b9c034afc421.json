@@ -1,0 +1,77 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT id, title, status as \"status!: String\", impact as \"impact!: String\", started_at, resolved_at\n        FROM incidents\n        WHERE workspace_id = $1\n          AND status_page_id = $2\n          AND status <> 'resolved'\n        ORDER BY started_at DESC\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "title",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "status!: String",
+        "type_info": {
+          "Custom": {
+            "name": "incident_status",
+            "kind": {
+              "Enum": [
+                "investigating",
+                "identified",
+                "monitoring",
+                "resolved"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "impact!: String",
+        "type_info": {
+          "Custom": {
+            "name": "incident_impact",
+            "kind": {
+              "Enum": [
+                "none",
+                "minor",
+                "major",
+                "critical"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "started_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 5,
+        "name": "resolved_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  "hash": "c6aee82fb9e88b823ea130840d2650039aabf836b26224f75353b9c034afc421"
+}

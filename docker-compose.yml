@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: kaxapage
+      POSTGRES_USER: kaxapage
+      POSTGRES_PASSWORD: kaxapage
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgres://kaxapage:kaxapage@postgres:5432/kaxapage}
+      # Required: set a strong random token before starting.
+      # Generate one with: openssl rand -hex 32
+      ADMIN_TOKEN: ${ADMIN_TOKEN:?ADMIN_TOKEN env var is required}
+      LISTEN_ADDR: "0.0.0.0:8080"
+      RUST_LOG: info
+    restart: unless-stopped
+
+volumes:
+  pgdata:

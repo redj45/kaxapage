@@ -1,0 +1,17 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            INSERT INTO services (workspace_id, name, description, position, status)\n            VALUES ($1, $2, $3, $4, 'operational')\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Text",
+        "Text",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "47930bc6fdafae42ea762f43d2d34bdb7bd5ea5a697886a2fb79bd2aae1d935f"
+}

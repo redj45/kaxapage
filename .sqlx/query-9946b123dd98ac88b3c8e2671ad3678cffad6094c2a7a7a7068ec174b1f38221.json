@@ -1,0 +1,25 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        UPDATE status_pages\n        SET title = COALESCE($1, title),\n            published = COALESCE($2, published)\n        WHERE id = $3 AND workspace_id = $4\n        RETURNING id\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Bool",
+        "Uuid",
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "9946b123dd98ac88b3c8e2671ad3678cffad6094c2a7a7a7068ec174b1f38221"
+}

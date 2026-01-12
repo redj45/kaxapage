@@ -1,0 +1,28 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT s.id, s.name\n        FROM services s\n        JOIN incident_services isc ON isc.service_id = s.id\n        WHERE isc.incident_id = $1\n        ORDER BY s.position ASC, s.created_at ASC\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "702342132574335bb55218660ac200bafbb82a5580560294fbd02363e97c9770"
+}

@@ -1,0 +1,46 @@
+# Rust build artifacts
+target/
+
+# Node / frontend build artifacts
+web/admin/node_modules/
+web/admin-dist/
+
+# Development files
+.env
+.env.*
+*.env
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.gitlab/
+.gitlab-ci.yml
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker.compose
+
+# Docs
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+SECURITY.md
+LICENSE
+
+# Test files
+tests/
+
+# Editor / OS
+.editorconfig
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log

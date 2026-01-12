@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Load .env if it exists
+if [ -f .env ]; then
+  set -o allexport
+  # shellcheck source=/dev/null
+  source .env
+  set +o allexport
+fi
+
+: "${DATABASE_URL:?DATABASE_URL is not set. Copy .env.example to .env and fill in the values.}"
+: "${ADMIN_TOKEN:?ADMIN_TOKEN is not set. Copy .env.example to .env and fill in the values.}"
+
+export RUST_LOG="${RUST_LOG:-info}"
+
+pushd web/admin >/dev/null
+if [ -f package-lock.json ]; then
+  npm ci
+else
+  npm install
+fi
+npm run build
+popd >/dev/null
+
+cargo run
