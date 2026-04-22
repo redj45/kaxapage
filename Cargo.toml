@@ -42,6 +42,6 @@ mime_guess = "2"
 governor = "0.6"
 
 [dev-dependencies]
-axum-test = "17"
+axum-test = "18"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde_json = "1"
