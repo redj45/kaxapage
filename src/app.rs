@@ -71,6 +71,23 @@ pub fn overall_status_from_services(statuses: &[String]) -> String {
     worst.to_string()
 }
 
+pub fn router(state: AppState) -> Router {
+    Router::new()
+        .route("/", get(public::page_html))
+        .route("/rss.xml", get(public::page_rss))
+        .route("/style.css", get(assets::style_css))
+        .route("/healthz", get(public::healthz))
+        // embedded admin SPA
+        .route("/admin", get(admin::admin_handler))
+        .route("/admin/{*path}", get(admin::admin_handler))
+        // API
+        .merge(api::router(state.clone()))
+        .with_state(state)
+        .layer(DefaultBodyLimit::max(1_048_576)) // 1 MB
+        .layer(CompressionLayer::new())
+        .layer(TraceLayer::new_for_http())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -154,21 +171,4 @@ mod tests {
         assert!(!constant_time_eq(b"", b"x"));
         assert!(!constant_time_eq(b"x", b""));
     }
-}
-
-pub fn router(state: AppState) -> Router {
-    Router::new()
-        .route("/", get(public::page_html))
-        .route("/rss.xml", get(public::page_rss))
-        .route("/style.css", get(assets::style_css))
-        .route("/healthz", get(public::healthz))
-        // embedded admin SPA
-        .route("/admin", get(admin::admin_handler))
-        .route("/admin/{*path}", get(admin::admin_handler))
-        // API
-        .merge(api::router(state.clone()))
-        .with_state(state)
-        .layer(DefaultBodyLimit::max(1_048_576)) // 1 MB
-        .layer(CompressionLayer::new())
-        .layer(TraceLayer::new_for_http())
 }

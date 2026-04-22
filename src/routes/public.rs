@@ -65,95 +65,6 @@ fn impact_label(impact: &str) -> &'static str {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // ── escape_html ──────────────────────────────────────────────────────────
-
-    #[test]
-    fn escape_html_no_special() {
-        assert_eq!(escape_html("hello world"), "hello world");
-        assert_eq!(escape_html(""), "");
-        assert_eq!(escape_html("abc123"), "abc123");
-    }
-
-    #[test]
-    fn escape_html_ampersand() {
-        assert_eq!(escape_html("foo & bar"), "foo &amp; bar");
-        assert_eq!(escape_html("&&"), "&amp;&amp;");
-    }
-
-    #[test]
-    fn escape_html_lt_gt() {
-        assert_eq!(escape_html("<script>"), "&lt;script&gt;");
-        assert_eq!(escape_html("a < b > c"), "a &lt; b &gt; c");
-    }
-
-    #[test]
-    fn escape_html_quotes() {
-        assert_eq!(escape_html(r#"say "hi""#), "say &quot;hi&quot;");
-        assert_eq!(escape_html("it's"), "it&#x27;s");
-    }
-
-    #[test]
-    fn escape_html_mixed() {
-        assert_eq!(
-            escape_html(r#"<a href="test">O'Brien & Co</a>"#),
-            "&lt;a href=&quot;test&quot;&gt;O&#x27;Brien &amp; Co&lt;/a&gt;"
-        );
-    }
-
-    // ── status_badge ─────────────────────────────────────────────────────────
-
-    #[test]
-    fn status_badge_all_variants() {
-        assert_eq!(status_badge("operational"), ("ok", "Operational"));
-        assert_eq!(status_badge("degraded"), ("warn", "Degraded"));
-        assert_eq!(status_badge("partial_outage"), ("warn", "Partial outage"));
-        assert_eq!(status_badge("major_outage"), ("bad", "Major outage"));
-        assert_eq!(status_badge("maintenance"), ("accent", "Maintenance"));
-    }
-
-    #[test]
-    fn status_badge_unknown_fallback() {
-        assert_eq!(status_badge(""), ("ok", "Operational"));
-        assert_eq!(status_badge("unknown"), ("ok", "Operational"));
-    }
-
-    // ── incident_badge ───────────────────────────────────────────────────────
-
-    #[test]
-    fn incident_badge_all_variants() {
-        assert_eq!(incident_badge("resolved"), ("ok", "Resolved"));
-        assert_eq!(incident_badge("monitoring"), ("accent", "Monitoring"));
-        assert_eq!(incident_badge("identified"), ("warn", "Identified"));
-        assert_eq!(incident_badge("investigating"), ("warn", "Investigating"));
-    }
-
-    #[test]
-    fn incident_badge_unknown_fallback() {
-        assert_eq!(incident_badge(""), ("warn", "Unknown"));
-        assert_eq!(incident_badge("random"), ("warn", "Unknown"));
-    }
-
-    // ── impact_label ─────────────────────────────────────────────────────────
-
-    #[test]
-    fn impact_label_all_variants() {
-        assert_eq!(impact_label("critical"), "Critical");
-        assert_eq!(impact_label("major"), "Major");
-        assert_eq!(impact_label("minor"), "Minor");
-        assert_eq!(impact_label("none"), "None");
-    }
-
-    #[test]
-    fn impact_label_unknown_fallback() {
-        assert_eq!(impact_label(""), "Unknown");
-        assert_eq!(impact_label("high"), "Unknown");
-    }
-}
-
 pub async fn healthz(State(state): State<AppState>) -> impl IntoResponse {
     match sqlx::query_scalar::<_, i32>("SELECT 1")
         .fetch_one(&state.db)
@@ -832,4 +743,93 @@ pub async fn page_rss(State(state): State<AppState>) -> impl IntoResponse {
     );
     headers.insert(header::CACHE_CONTROL, "no-cache".parse().unwrap());
     (headers, xml).into_response()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // ── escape_html ──────────────────────────────────────────────────────────
+
+    #[test]
+    fn escape_html_no_special() {
+        assert_eq!(escape_html("hello world"), "hello world");
+        assert_eq!(escape_html(""), "");
+        assert_eq!(escape_html("abc123"), "abc123");
+    }
+
+    #[test]
+    fn escape_html_ampersand() {
+        assert_eq!(escape_html("foo & bar"), "foo &amp; bar");
+        assert_eq!(escape_html("&&"), "&amp;&amp;");
+    }
+
+    #[test]
+    fn escape_html_lt_gt() {
+        assert_eq!(escape_html("<script>"), "&lt;script&gt;");
+        assert_eq!(escape_html("a < b > c"), "a &lt; b &gt; c");
+    }
+
+    #[test]
+    fn escape_html_quotes() {
+        assert_eq!(escape_html(r#"say "hi""#), "say &quot;hi&quot;");
+        assert_eq!(escape_html("it's"), "it&#x27;s");
+    }
+
+    #[test]
+    fn escape_html_mixed() {
+        assert_eq!(
+            escape_html(r#"<a href="test">O'Brien & Co</a>"#),
+            "&lt;a href=&quot;test&quot;&gt;O&#x27;Brien &amp; Co&lt;/a&gt;"
+        );
+    }
+
+    // ── status_badge ─────────────────────────────────────────────────────────
+
+    #[test]
+    fn status_badge_all_variants() {
+        assert_eq!(status_badge("operational"), ("ok", "Operational"));
+        assert_eq!(status_badge("degraded"), ("warn", "Degraded"));
+        assert_eq!(status_badge("partial_outage"), ("warn", "Partial outage"));
+        assert_eq!(status_badge("major_outage"), ("bad", "Major outage"));
+        assert_eq!(status_badge("maintenance"), ("accent", "Maintenance"));
+    }
+
+    #[test]
+    fn status_badge_unknown_fallback() {
+        assert_eq!(status_badge(""), ("ok", "Operational"));
+        assert_eq!(status_badge("unknown"), ("ok", "Operational"));
+    }
+
+    // ── incident_badge ───────────────────────────────────────────────────────
+
+    #[test]
+    fn incident_badge_all_variants() {
+        assert_eq!(incident_badge("resolved"), ("ok", "Resolved"));
+        assert_eq!(incident_badge("monitoring"), ("accent", "Monitoring"));
+        assert_eq!(incident_badge("identified"), ("warn", "Identified"));
+        assert_eq!(incident_badge("investigating"), ("warn", "Investigating"));
+    }
+
+    #[test]
+    fn incident_badge_unknown_fallback() {
+        assert_eq!(incident_badge(""), ("warn", "Unknown"));
+        assert_eq!(incident_badge("random"), ("warn", "Unknown"));
+    }
+
+    // ── impact_label ─────────────────────────────────────────────────────────
+
+    #[test]
+    fn impact_label_all_variants() {
+        assert_eq!(impact_label("critical"), "Critical");
+        assert_eq!(impact_label("major"), "Major");
+        assert_eq!(impact_label("minor"), "Minor");
+        assert_eq!(impact_label("none"), "None");
+    }
+
+    #[test]
+    fn impact_label_unknown_fallback() {
+        assert_eq!(impact_label(""), "Unknown");
+        assert_eq!(impact_label("high"), "Unknown");
+    }
 }
