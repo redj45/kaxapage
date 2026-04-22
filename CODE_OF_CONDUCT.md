@@ -60,7 +60,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement via the
-[GitHub Security Advisory](https://github.com/kaxapage/kaxapage/security/advisories/new)
+[GitHub Security Advisory](https://github.com/redj45/kaxapage/security/advisories/new)
 or by opening a private discussion with the maintainers.
 
 All complaints will be reviewed and investigated promptly and fairly.

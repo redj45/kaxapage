@@ -176,7 +176,7 @@ A good PR description includes:
 
 ## Reporting Bugs
 
-Please use the [GitHub issue tracker](https://github.com/kaxapage/kaxapage/issues) to report bugs. Before opening a new issue, search existing issues to avoid duplicates.
+Please use the [GitHub issue tracker](https://github.com/redj45/kaxapage/issues) to report bugs. Before opening a new issue, search existing issues to avoid duplicates.
 
 When filing a bug report, use the **Bug Report** issue template and include:
 

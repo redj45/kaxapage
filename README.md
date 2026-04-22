@@ -1,8 +1,8 @@
 # KaxaPage
 
-[![CI](https://github.com/kaxapage/kaxapage/actions/workflows/ci.yml/badge.svg)](https://github.com/kaxapage/kaxapage/actions/workflows/ci.yml)
-[![Release](https://github.com/kaxapage/kaxapage/actions/workflows/release.yml/badge.svg)](https://github.com/kaxapage/kaxapage/actions/workflows/release.yml)
-[![Latest Release](https://img.shields.io/github/v/release/kaxapage/kaxapage?color=brightgreen)](https://github.com/kaxapage/kaxapage/releases/latest)
+[![CI](https://github.com/redj45/kaxapage/actions/workflows/ci.yml/badge.svg)](https://github.com/redj45/kaxapage/actions/workflows/ci.yml)
+[![Release](https://github.com/redj45/kaxapage/actions/workflows/release.yml/badge.svg)](https://github.com/redj45/kaxapage/actions/workflows/release.yml)
+[![Latest Release](https://img.shields.io/github/v/release/redj45/kaxapage?color=brightgreen)](https://github.com/redj45/kaxapage/releases/latest)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/rust-1.75%2B-orange.svg)](https://www.rust-lang.org)
 [![PostgreSQL](https://img.shields.io/badge/postgres-16-blue.svg)](https://www.postgresql.org)
@@ -60,7 +60,7 @@ A self-hosted status page service built with Rust and Vue 3. Deploy it on your o
 ### 1. Clone and start the database
 
 ```sh
-git clone https://github.com/kaxapage/kaxapage.git
+git clone https://github.com/redj45/kaxapage.git
 cd kaxapage
 docker compose up -d
 ```

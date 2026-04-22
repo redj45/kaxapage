@@ -81,4 +81,4 @@ These features are explicitly **not** planned for KaxaPage. The goal is to remai
 
 ## 💬 Have an Idea?
 
-Open a [Feature Request](https://github.com/kaxapage/kaxapage/issues/new?template=feature_request.yml) or start a conversation in [GitHub Discussions](https://github.com/kaxapage/kaxapage/discussions).
+Open a [Feature Request](https://github.com/redj45/kaxapage/issues/new?template=feature_request.yml) or start a conversation in [GitHub Discussions](https://github.com/redj45/kaxapage/discussions).

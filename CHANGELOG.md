@@ -23,5 +23,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unit test suite — 29 tests covering core domain logic and helper functions
 - Integration test suite — 26 tests covering HTTP endpoints and database interactions
 
-[Unreleased]: https://github.com/kaxapage/kaxapage/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/kaxapage/kaxapage/releases/tag/v0.1.0
+[Unreleased]: https://github.com/redj45/kaxapage/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/redj45/kaxapage/releases/tag/v0.1.0

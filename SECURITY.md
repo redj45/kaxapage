@@ -15,7 +15,7 @@ Only the latest released version of KaxaPage receives security fixes.
 
 If you discover a security vulnerability, please report it through one of the following private channels:
 
-- **GitHub Security Advisory:** use [Report a Vulnerability](https://github.com/kaxapage/kaxapage/security/advisories/new) — this creates a private draft advisory visible only to maintainers
+- **GitHub Security Advisory:** use [Report a Vulnerability](https://github.com/redj45/kaxapage/security/advisories/new) — this creates a private draft advisory visible only to maintainers
 
 Please include as much detail as possible in your report:
 
