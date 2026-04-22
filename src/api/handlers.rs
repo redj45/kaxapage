@@ -7,7 +7,7 @@
 // See LICENSE file or https://www.gnu.org/licenses/agpl-3.0.txt
 use axum::{
     extract::{ConnectInfo, Path, Query, State},
-    http::{header::SET_COOKIE, header, HeaderMap, StatusCode},
+    http::{header, header::SET_COOKIE, HeaderMap, StatusCode},
     middleware,
     response::IntoResponse,
     routing::{get, patch, post},
@@ -401,7 +401,11 @@ pub async fn create_service(
     }
 
     let position = req.position.unwrap_or(0);
-    let status = req.status.as_ref().map(|s| s.as_str()).unwrap_or("operational");
+    let status = req
+        .status
+        .as_ref()
+        .map(|s| s.as_str())
+        .unwrap_or("operational");
 
     let row = sqlx::query_as!(
         types::ServiceItem,

@@ -19,15 +19,15 @@ fn cookie_value<'a>(cookie_header: &'a str, name: &str) -> Option<&'a str> {
     cookie_header.split(';').find_map(|part| {
         let part = part.trim();
         let (k, v) = part.split_once('=')?;
-        if k.trim() == name { Some(v.trim()) } else { None }
+        if k.trim() == name {
+            Some(v.trim())
+        } else {
+            None
+        }
     })
 }
 
-pub async fn admin_auth(
-    State(state): State<AppState>,
-    req: Request,
-    next: Next,
-) -> Response {
+pub async fn admin_auth(State(state): State<AppState>, req: Request, next: Next) -> Response {
     // Prefer HttpOnly cookie; fall back to Bearer for API clients / curl.
     let token = req
         .headers()
