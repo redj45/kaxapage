@@ -302,4 +302,4 @@ The open-source version of KaxaPage is licensed under the
 [GNU Affero General Public License v3.0](LICENSE).
 
 For commercial use, SaaS deployment, or enterprise licensing,
-see [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) or contact: your@email.com
+see [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) or contact: hello@kaxapage.com

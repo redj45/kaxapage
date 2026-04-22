@@ -7,4 +7,4 @@ The commercial license grants you the right to:
 - Receive priority support and SLA guarantees
 - Access to enterprise features (SSO, audit log, custom integrations)
 
-Contact: your@email.com
+Contact: hello@kaxapage.com
