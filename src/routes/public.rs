@@ -414,39 +414,64 @@ pub async fn page_html(State(state): State<AppState>) -> impl IntoResponse {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content="Status page: {title}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {{
-      --bg:     #0b0f14;
-      --bg2:    #0a111a;
-      --surface: rgba(255,255,255,.045);
-      --surface2: rgba(255,255,255,.07);
-      --border: rgba(255,255,255,.10);
-      --text:   #e9eef5;
-      --muted:  #a9b4c2;
-      --muted2: #7f8a99;
-      --mono:   ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bg:     #050810;
+      --bg2:    #070c16;
+      --surface: rgba(255,255,255,.040);
+      --surface2: rgba(255,255,255,.065);
+      --border: rgba(255,255,255,.08);
+      --text:   #e8edf8;
+      --muted:  #7c8a9c;
+      --muted2: #56626f;
+      --accent: #00d4ff;
+      --mono:   'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --sans:   'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --display:'Syne', ui-sans-serif, system-ui, sans-serif;
       --radius: 12px;
     }}
     *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
     html, body {{ height: 100%; }}
     body {{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: var(--sans);
       background: var(--bg);
       color: var(--text);
       line-height: 1.55;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }}
     a {{ color: inherit; text-decoration: none; }}
 
     /* ── background ── */
     .bg {{
       position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      background:
-        radial-gradient(1200px 500px at 15% 10%, rgba(134,240,193,.09), transparent 55%),
-        radial-gradient(900px  400px at 85% 20%, rgba(124,199,255,.08), transparent 55%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
+    }}
+    .bg::before {{
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: .055;
+      background-image: radial-gradient(circle, rgba(255,255,255,.28) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(800px 600px at 50% 10%, black 35%, transparent 68%);
+    }}
+    .bg::after {{
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 999px;
+      left: 50%; top: -200px;
+      transform: translateX(-50%);
+      background: rgba(0,212,255,.12);
+      filter: blur(80px);
+      pointer-events: none;
     }}
 
     /* ── layout ── */
@@ -458,12 +483,12 @@ pub async fn page_html(State(state): State<AppState>) -> impl IntoResponse {
     .sp-logo {{ display: flex; align-items: center; gap: 10px; }}
     .sp-logo-icon {{
       width: 36px; height: 36px; border-radius: 10px;
-      background: linear-gradient(135deg, rgba(134,240,193,.22), rgba(124,199,255,.18));
-      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(0,212,255,.20), rgba(0,212,255,.06));
+      border: 1px solid rgba(0,212,255,.25);
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 14px; letter-spacing: .5px; color: var(--text);
+      font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .5px; color: var(--text);
     }}
-    .sp-logo-name {{ font-size: 17px; font-weight: 600; color: var(--text); }}
+    .sp-logo-name {{ font-size: 17px; font-weight: 600; color: var(--text); font-family: var(--display); }}
     a.sp-logo {{ text-decoration: none; cursor: pointer; }}
     a.sp-logo:hover {{ opacity: .85; }}
 

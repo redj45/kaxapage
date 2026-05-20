@@ -1,22 +1,22 @@
 :root {
-    --bg: #0b0f14;
-    --panel: #0f1621;
-    --panel2: #111b28;
-    --text: #d7e0ea;
-    --muted: #90a3b6;
-    --line: #203042;
-    --accent: #5eead4;
+    --bg: #050810;
+    --panel: #080d18;
+    --panel2: #0b1220;
+    --text: #e8edf8;
+    --muted: #7c8a9c;
+    --muted2: #56626f;
+    --line: rgba(255, 255, 255, 0.08);
+    --accent: #00d4ff;
+    --accent-dim: rgba(0, 212, 255, 0.10);
     --warn: #fbbf24;
     --bad: #fb7185;
     --ok: #34d399;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     --radius: 16px;
-    --mono:
-        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-    --sans:
-        ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-        Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, "Liberation Mono", monospace;
+    --sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --display: 'Syne', ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -30,18 +30,9 @@ body {
     margin: 0;
     font-family: var(--sans);
     color: var(--text);
-    background:
-        radial-gradient(
-            1200px 600px at 20% -10%,
-            rgba(94, 234, 212, 0.12),
-            transparent 60%
-        ),
-        radial-gradient(
-            900px 500px at 80% 0%,
-            rgba(94, 234, 212, 0.08),
-            transparent 55%
-        ),
-        var(--bg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -61,8 +52,8 @@ a:hover {
     justify-content: space-between;
     padding: 14px 18px;
     border-bottom: 1px solid var(--line);
-    background: rgba(11, 15, 20, 0.78);
-    backdrop-filter: blur(10px);
+    background: rgba(5, 8, 16, 0.80);
+    backdrop-filter: blur(12px);
 }
 
 .brand {
@@ -85,15 +76,17 @@ a:hover {
     justify-content: center;
     background: linear-gradient(
         180deg,
-        rgba(94, 234, 212, 0.25),
-        rgba(94, 234, 212, 0.06)
+        rgba(0, 212, 255, 0.22),
+        rgba(0, 212, 255, 0.06)
     );
-    border: 1px solid rgba(94, 234, 212, 0.25);
+    border: 1px solid rgba(0, 212, 255, 0.25);
     font-weight: 800;
     letter-spacing: 0.5px;
+    font-family: var(--display);
 }
 .meta .name {
     font-weight: 700;
+    font-family: var(--display);
 }
 .meta .tag {
     font-size: 12px;
@@ -115,8 +108,8 @@ a:hover {
 }
 .nav a.active {
     color: var(--text);
-    border-color: rgba(94, 234, 212, 0.28);
-    background: rgba(94, 234, 212, 0.08);
+    border-color: rgba(0, 212, 255, 0.30);
+    background: rgba(0, 212, 255, 0.08);
 }
 
 .right {
@@ -134,8 +127,8 @@ a:hover {
 .card {
     background: linear-gradient(
         180deg,
-        rgba(17, 27, 40, 0.88),
-        rgba(15, 22, 33, 0.88)
+        rgba(8, 13, 24, 0.88),
+        rgba(5, 10, 18, 0.88)
     );
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -147,12 +140,15 @@ a:hover {
     font-size: 22px;
     font-weight: 750;
     margin: 0 0 10px;
+    font-family: var(--display);
+    letter-spacing: -0.02em;
 }
 .h2 {
     font-size: 16px;
     font-weight: 700;
     margin: 0 0 10px;
     color: var(--text);
+    font-family: var(--display);
 }
 .p {
     color: var(--muted);
@@ -179,12 +175,13 @@ a:hover {
 .select,
 .textarea {
     width: 100%;
-    background: rgba(8, 12, 18, 0.65);
+    background: rgba(5, 8, 16, 0.70);
     border: 1px solid var(--line);
     color: var(--text);
     border-radius: 12px;
     padding: 10px 12px;
     outline: none;
+    font-family: var(--sans);
 }
 .textarea {
     min-height: 96px;
@@ -193,7 +190,8 @@ a:hover {
 .input:focus,
 .select:focus,
 .textarea:focus {
-    border-color: rgba(94, 234, 212, 0.35);
+    border-color: rgba(0, 212, 255, 0.35);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
 }
 
 .btn {
@@ -203,13 +201,17 @@ a:hover {
     gap: 8px;
     padding: 10px 12px;
     border-radius: 12px;
-    border: 1px solid rgba(94, 234, 212, 0.25);
-    background: rgba(94, 234, 212, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: rgba(0, 212, 255, 0.08);
     color: var(--text);
     cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 500;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 .btn:hover {
-    background: rgba(94, 234, 212, 0.14);
+    background: rgba(0, 212, 255, 0.13);
+    border-color: rgba(0, 212, 255, 0.35);
 }
 .btn.secondary {
     border-color: var(--line);
@@ -272,8 +274,8 @@ a:hover {
     color: rgba(251, 191, 36, 0.95);
 }
 .pill.accent {
-    border-color: rgba(94, 234, 212, 0.35);
-    color: rgba(94, 234, 212, 0.95);
+    border-color: rgba(0, 212, 255, 0.35);
+    color: rgba(0, 212, 255, 0.95);
 }
 
 .kbd {
@@ -341,7 +343,7 @@ a:hover {
     margin: 12vh auto 0;
     border-radius: 18px;
     border: 1px solid var(--line);
-    background: rgba(15, 22, 33, 0.95);
+    background: rgba(8, 13, 24, 0.97);
     box-shadow: var(--shadow);
     padding: 14px;
 }
