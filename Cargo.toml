@@ -28,7 +28,7 @@ tower-http = { version = "0.6", features = ["trace", "compression-gzip"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
-sqlx = { version = "0.8", features = ["runtime-tokio", "postgres", "uuid", "chrono", "migrate"] }
+sqlx = { version = "0.9", features = ["runtime-tokio", "postgres", "uuid", "chrono", "migrate"] }
 uuid = { version = "1", features = ["v4", "serde"] }
 chrono = { version = "0.4", features = ["serde"] }
 
