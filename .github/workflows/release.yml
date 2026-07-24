@@ -19,7 +19,7 @@ jobs:
         with:
           targets: x86_64-unknown-linux-musl
 
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: |
             ~/.cargo/registry
@@ -32,7 +32,7 @@ jobs:
         run: sudo apt-get install -y --no-install-recommends musl-tools
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: '20'
 
@@ -70,7 +70,7 @@ jobs:
         with:
           targets: aarch64-apple-darwin
 
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: |
             ~/.cargo/registry
@@ -80,7 +80,7 @@ jobs:
           restore-keys: ${{ runner.os }}-cargo-release-
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: '20'
 
